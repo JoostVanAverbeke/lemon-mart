@@ -11,6 +11,6 @@ export class AppComponent {
   title = 'lemon-mart';
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('lemon', sanitizer.bypassSecurityTrustResourceUrl(
-  'assets/img/icons/ lemon.svg'));
+  'assets/img/icons/lemon.svg'));
   }
 }
