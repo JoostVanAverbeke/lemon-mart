@@ -5,9 +5,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { User } from '../user/user/user';
 import { Role } from './auth.enum';
 import { AuthService } from './auth.service';
-import {PhoneType} from '../user/user/phone.enum';
-import {IServerAuthResponse} from './iserver-auth-response';
-import {IAuthStatus} from './iauth-status';
+import { PhoneType } from '../user/user/phone.enum';
+import { IServerAuthResponse } from './iserver-auth-response';
+import { IAuthStatus } from './iauth-status';
 
 @Injectable()
 export class InMemoryAuthService extends AuthService {

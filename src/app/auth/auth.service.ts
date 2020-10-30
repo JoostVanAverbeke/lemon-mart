@@ -89,7 +89,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
   }
 
   getToken(): string {
-    const token: string = this.getItem('jwt');
+    const token: string | null = this.getItem('jwt');
     return ((token != null) ? token : '');
   }
 
