@@ -43,6 +43,16 @@ export class InMemoryAuthService extends AuthService {
     );
   }
 
+  /**
+   * Returns an observable of an IServerAuthResponse, which created by calling the fake-jwt-sign
+   * sign function for user that is deduced from the predefined default user but contains,
+   * the specified email, which should end with '@test.com'. The user role is of our user is
+   * deduced from the email address. If the email address includes 'cashier', the user role is
+   * mapped to Role.Cashier, if it includes 'clerk' it is mapped to Role.Clerk, if the email
+   * includes 'manager' it is mapped to Role.manager otherwise it is mapped to Role.none.
+   * @param email email address of the user that wants to sign in
+   * @param password password of the user that wants to sign in.
+   */
   protected authProvider(
     email: string,
     password: string

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, pipe, throwError } from 'rxjs';
-import { catchError, filter, flatMap, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, mergeMap, tap} from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
 import { transformError } from '../common/common';
 import { IUser } from '../user/user/iuser';
@@ -21,7 +21,7 @@ export const defaultAuthStatus: IAuthStatus = {
 export abstract class AuthService extends CacheService implements IAuthService {
   private getAndUpdateUserIfAuthenticated = pipe(
     filter((status: IAuthStatus) => status.isAuthenticated),
-    flatMap(() => this.getCurrentUser()),
+    mergeMap(() => this.getCurrentUser()),
     map((user: IUser) => this.currentUser$.next(user)),
     catchError(transformError)
   );
