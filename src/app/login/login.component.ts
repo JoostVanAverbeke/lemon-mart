@@ -7,7 +7,8 @@ import { AuthService } from '../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmailValidation, PasswordValidation } from '../common/validations';
 import { SubSink } from 'subsink';
-import {combineLatest} from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { UiService } from '../common/ui.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     route: ActivatedRoute,
-    // private uiService: UiService
+    private uiService: UiService
   ) {
     this.subs.sink = route.paramMap.subscribe(
       (params) => (this.redirectUrl = params.get('redirectUrl') ?? '')
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  async login(submittedForm: FormGroup) {
+  async login(submittedForm: FormGroup): Promise<void> {
     this.authService
       .login(submittedForm.value.email, submittedForm.value.password)
       .pipe(catchError((err) => (this.loginError = err)));
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(
         filter(([authStatus, user]) => authStatus.isAuthenticated && user?._id !== ''),
         tap(([authStatus, user]) => {
-          // this.uiService.showToast(`Welcome ${user.fullName}! Role: ${user.role}`)
+          this.uiService.showDialog('Login info', `Welcome ${user.fullName}! Role: ${user.role}`, 'OK');
           this.router.navigate([
             this.redirectUrl || this.homeRoutePerRole(user.role as Role),
           ]);

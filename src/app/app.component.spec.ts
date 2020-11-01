@@ -5,6 +5,8 @@ import { commonTestingModules, DomSanitizerFake, MatIconRegistryFake, MediaObser
 import { MediaObserver } from '@angular/flex-layout';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from './auth/auth.service';
+import { InMemoryAuthService } from './auth/in-memory-auth.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -16,6 +18,7 @@ describe('AppComponent', () => {
         { provide: MediaObserver, useClass: MediaObserverFake },
         { provide: MatIconRegistry, useClass: MatIconRegistryFake },
         { provide: DomSanitizer, useClass: DomSanitizerFake },
+        { provide: AuthService, useClass: InMemoryAuthService },
       ]),
       declarations: [
         AppComponent

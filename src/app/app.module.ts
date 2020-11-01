@@ -15,13 +15,15 @@ import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldErrorModule } from './user-controls/field-error/field-error.module';
+import { SimpleDialogComponent } from './common/simple-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    SimpleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { FieldErrorModule } from './user-controls/field-error/field-error.module
     { provide: AuthService, useClass: InMemoryAuthService },
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SimpleDialogComponent],
 })
 export class AppModule { }
