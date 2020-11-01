@@ -10,7 +10,7 @@ import { filter, tap } from 'rxjs/operators';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  displayLogin = true;
   constructor(private authService: AuthService,
               private router: Router) { }
 

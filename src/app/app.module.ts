@@ -12,12 +12,16 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { InMemoryAuthService } from './auth/in-memory-auth.service';
 import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FieldErrorModule } from './user-controls/field-error/field-error.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,8 @@ import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FieldErrorModule,
   ],
   providers: [
     { provide: AuthService, useClass: InMemoryAuthService },
