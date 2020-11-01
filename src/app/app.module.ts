@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldErrorModule } from './user-controls/field-error/field-error.module';
 import { SimpleDialogComponent } from './common/simple-dialog.component';
+import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SimpleDialogComponent } from './common/simple-dialog.component';
     PageNotFoundComponent,
     LoginComponent,
     SimpleDialogComponent,
+    NavigationMenuComponent,
   ],
   imports: [
     BrowserModule,
