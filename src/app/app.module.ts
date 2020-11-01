@@ -8,9 +8,10 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { InMemoryAuthService } from './auth/in-memory-auth.service';
+import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { InMemoryAuthService } from './auth/in-memory-auth.service';
   ],
   providers: [
     { provide: AuthService, useClass: InMemoryAuthService },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
